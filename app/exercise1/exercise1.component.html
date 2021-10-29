@@ -1,0 +1,34 @@
+   
+<h1>My Movies</h1>
+
+<h3>Add Movie</h3>
+<form (ngSubmit)="onCreate()" #f="ngForm" >
+<div>
+  <label for= "title">Title:</label>
+  <input type="text" id="title"  ngModel name="title">
+  <hr>
+  <label for = "genre"> Genre: </label>
+  <input type="text" id="genre" ngModel name="genre">
+  <button type="submit"> Create Movie </button>
+</div>
+<div>
+  <h3> List of Movies </h3>
+  <button (click)="onRecieveMovies()"> Retrieve Movies</button>
+  <button (click)="onClearMovies()"> Clear Movies </button>
+  <button> Create Button from fake URL endpoint</button>
+</div>
+
+<ul *ngIf= "loadedMovie.length >= 1 && !isFetching">
+  <li *ngFor="let movie of loadedMovie">
+    <h3> {{ movie.title }} </h3>
+    <p>  {{ movie.genre }} </p>
+  </li>  
+</ul>  
+<div 
+*ngIf="isFetching"
+class="lds-spinner"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+<div *ngIf = "error"> 
+  <h1> An Error has Occurred </h1>
+    <p> {{ error }} </p>
+</div>
+</form>
